@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/main">
+        <file>equipement.png</file>
+        <file>panne.png</file>
+        <file>zvenden.png</file>
+        <file>personnel.jpg</file>
+        <file>compte.jpg</file>
+    </qresource>
+</RCC>
