@@ -12,7 +12,9 @@ public:
      QSqlQueryModel *affichercompte();
      bool ajoutercompte();
      bool supprimercompte(int);
-     bool modifiercompte();
+     bool modifiercompte(int,QString,QString);
+     QSqlQueryModel* cherchercompte(QString index);
+     QSqlQueryModel* triecompte(int index);
 };
 
 #endif // COMPTE_H

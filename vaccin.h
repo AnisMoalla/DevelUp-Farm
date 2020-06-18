@@ -10,10 +10,10 @@ class Vaccin
 {
 public:
     Vaccin();
-    Vaccin(QString,int,QDate,QDate);
+    Vaccin(QString,int,QDate,QString);
     QString get_type();
     QDate get_datev();
-    QDate get_datevv();
+    QString get_CIN();
     int get_nb();
     bool ajouter();
     QSqlQueryModel * afficher();
@@ -21,11 +21,11 @@ public:
     bool modifier(int);
     QSqlQueryModel * triee(int index);
     QSqlQueryModel * rechercher(QString ch);
-    QSqlQueryModel * rechercher2(QString ch);
+    //QSqlQueryModel * rechercher2(QString ch);
 private:
-    QString type;
+    QString type,CIN;
     int nb;
-    QDate datev,datevv;
+    QDate datev;
 };
 
 #endif // VACCIN_H

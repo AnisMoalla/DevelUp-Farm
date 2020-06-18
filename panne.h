@@ -4,19 +4,21 @@
 #include <QSqlQuery>
 #include <QSqlQueryModel>
 #include <QComboBox>
+#include <QDate>
 class Panne
 {
 public:
     Panne();
-    Panne(int,int,int,int);
+    Panne(int,int,int,QDate,QDate);
     int get_id();
     int get_numserie();
 
     int get_prix();
-    int get_duree();
+    QDate get_datedebut();
+    QDate get_datefin();
     bool ajouter();
     QSqlQueryModel * afficher();
-    bool modifier(int,int,int,int);
+    bool modifier(int,int,QDate,QDate);
     bool supprimer(int);
     QSqlQueryModel* chercherp(QString index);
     QSqlQueryModel* triepn(int index);
@@ -27,7 +29,8 @@ private:
     int numserie;
 
     int prix;
-    int duree;
+    QDate datedebut;
+    QDate datefin;
 
 };
 

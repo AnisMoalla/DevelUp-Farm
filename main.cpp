@@ -1,23 +1,29 @@
 #include "mainwindow.h"
+
 #include <QApplication>
-#include <QMessageBox>
-#include <QDebug>
 #include "connexion.h"
+#include <QMessageBox>
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-   Connexion c;
-   bool test= c.ouvrirConnexion();
-   MainWindow w;
-              if(test)
-{
+    connexion c;
+     bool test=c.ouvrircnx();
+     QMessageBox msg;
+    MainWindow w;
+    if(test)
+    {
         w.show();
 
 
+    /*msg.setText("connexion etablie");
+    msg.exec();*/
+}
+else
+{
+ msg.setText("connexxion echec");
+ msg.exec();
     }
-          else
-               QMessageBox::information(nullptr, QObject::tr("database is not open"),
-                           QObject::tr("Echec de la connexion.\n""Click Cancel to exit."), QMessageBox::Cancel);
 
 
 

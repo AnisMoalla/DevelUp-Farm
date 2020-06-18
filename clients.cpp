@@ -35,8 +35,8 @@ QSqlQueryModel * clients::afficher()
 
 model->setQuery("select * from clients");
 model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
-model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nom "));
-model->setHeaderData(2, Qt::Horizontal, QObject::tr("tel"));
+model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM "));
+model->setHeaderData(2, Qt::Horizontal, QObject::tr("TEL"));
     return model;
 }
 
@@ -76,19 +76,8 @@ QSqlQueryModel *clients::recherche(int idd){
     QString res= QString::number(idd);
     model->setQuery("select * from clients where CIN like '%"+res+"%'" );
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
-    model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom "));
-    model->setHeaderData(2, Qt::Horizontal, QObject::tr("tel"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM "));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("TEL"));
 
     return model;
     }
-QSqlQueryModel*clients::afficher_BY_CIN()
-{
-    QSqlQueryModel * model= new QSqlQueryModel();
-
-    model->setQuery("select CIN from CLIENTS ");
-
- model->setHeaderData(0, Qt::Horizontal, QObject::tr("CIN"));
-
-
-        return model;
-}

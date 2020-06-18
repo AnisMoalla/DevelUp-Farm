@@ -10,7 +10,7 @@ class Veterinaire
     Veterinaire(QString,QString,int,QString,QString,QString,QString);
 
     QString get_nom();
-    QString get_prenom();
+    QString get_CIN();
     int get_prix();
     QString get_numtele();
     QString get_adresse();
@@ -20,8 +20,10 @@ class Veterinaire
     QSqlQueryModel * affichervet();
     bool supprimervet(int);
     bool modifiervet(int);
+    QSqlQueryModel * recherchervet(QString ch);
+
 private:
-    QString nom,prenom,adresse,email,dispo,numtele;
+    QString nom,CIN,adresse,email,dispo,numtele;
     int prix;
 
 };

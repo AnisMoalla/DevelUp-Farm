@@ -43,8 +43,8 @@ model->setHeaderData(3, Qt::Horizontal, QObject::tr("DISPONIBILITE"));
 }
 QSqlQueryModel * Equipement::afficherI()
 {QSqlQueryModel * model= new QSqlQueryModel();
-    QString non="non";
-model->setQuery("select numserie from equipement where disponibilite='non'");
+    QString Non_Disponible="Non Disponible";
+model->setQuery("select numserie from equipement where disponibilite='Non Disponible'");
 model->setHeaderData(0, Qt::Horizontal, QObject::tr("NUMSERIE"));
 
     return model;
@@ -66,6 +66,7 @@ QSqlQuery query;
 QString res= QString::number(numserie);
 query.prepare("Delete from equipement where NUMSERIE = :numserie ");
 query.bindValue(":numserie", res);
+
 return    query.exec();
 }
 QSqlQueryModel * Equipement::cherchere(QString index)

@@ -7,35 +7,39 @@ id=1;
 numserie=0;
 
 prix=0;
-duree=0;
+
 }
-Panne::Panne(int numserie,int id,int prix,int duree)
+Panne::Panne(int numserie,int id,int prix,QDate datedebut,QDate datefin)
 {
 this->id=id;
 this->numserie=numserie;
 
 this->prix=prix;
-this->duree=duree;
+this->datedebut=datedebut;
+    this->datefin=datefin;
 }
 int Panne::get_id(){return id;}
 int Panne::get_numserie(){return numserie;}
 
 int Panne::get_prix(){return prix;}
-int Panne::get_duree(){return duree;}
+QDate Panne::get_datedebut(){return datedebut;}
+QDate Panne::get_datefin(){return datefin;}
+
 bool Panne::ajouter()
 {
 QSqlQuery query;
-query.prepare("INSERT INTO panne (id, numserie, prix, duree)"
-              "VALUES(:id, :numserie, :prix, :duree)");
+query.prepare("INSERT INTO panne (numserie, prix, datedebut,datefin)"
+              "VALUES(:numserie, :prix, :datedebut, :datefin)");
 QString str1 = QString::number(id);
 QString str2 = QString::number(numserie);
 QString str3 = QString::number(prix);
-QString str4 = QString::number(duree);
-query.bindValue(":id",str1);
+
+//query.bindValue(":id",str1);
 query.bindValue(":numserie",str2);
 
 query.bindValue(":prix",str3);
-query.bindValue(":duree",str4);
+query.bindValue(":datedebut",datedebut);
+query.bindValue(":datefin",datefin);
 return query.exec();
 }
 QSqlQueryModel * Panne::afficher()
@@ -47,21 +51,23 @@ model->setHeaderData(0, Qt::Horizontal, QObject::tr("NUMSERIE"));
 model->setHeaderData(1, Qt::Horizontal, QObject::tr("ID"));
 
 model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRIX"));
-model->setHeaderData(3, Qt::Horizontal, QObject::tr("DUREE"));
+model->setHeaderData(3, Qt::Horizontal, QObject::tr("DATE DEBUT"));
+model->setHeaderData(4, Qt::Horizontal, QObject::tr("DATE FIN"));
 return model;
 }
-bool Panne::modifier(int id,int numserie,int prix,int duree)
+bool Panne::modifier(int numserie,int prix,QDate datedebut,QDate datefin)
 {
     QSqlQuery query;
 
     QString res= QString::number(numserie);
 
-    query.prepare("update panne set ID=:id, PRIX=:prix, DUREE=:duree where NUMSERIE='"+res+"'");
+    query.prepare("update panne set ID=:id, PRIX=:prix, DATEDEBUT=:datedebut , DATEFIN=:datefin where NUMSERIE='"+res+"'");
     query.bindValue(":numserie",res);
-    query.bindValue(":id",id);
+    //query.bindValue(":id",id);
 
     query.bindValue(":prix",prix);
-    query.bindValue(":duree",duree);
+    query.bindValue(":datedebut",datedebut);
+    query.bindValue(":datefin",datefin);
     return query.exec();
 }
 bool Panne::supprimer(int numserie)
@@ -78,12 +84,13 @@ query.prepare("Delete from panne where NUMSERIE = :numserie ");
 QSqlQueryModel * Panne::chercherp(QString index)
 {
     QSqlQueryModel * model=new QSqlQueryModel();
-    QString research="select * FROM PANNE where NUMSERIE like '"+index+"%' or ID like '"+index+"%' OR PRIX LIKE '"+index+"%' OR DUREE LIKE '"+index+"%'";
+    QString research="select * FROM PANNE where NUMSERIE like '"+index+"%' or ID like '"+index+"%' OR PRIX LIKE '"+index+"%' OR DATEDEBUT LIKE '"+index+"%' OR DATEFIN LIKE '"+index+"%' ";
      model->setQuery(research);
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("NUMSERIE"));
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("ID"));
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRIX"));
-    model->setHeaderData(3, Qt::Horizontal, QObject::tr("DUREE"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("DATE DEBUT"));
+        model->setHeaderData(4, Qt::Horizontal, QObject::tr("DATE FIN"));
     return model;
 }
 
@@ -104,7 +111,8 @@ QSqlQueryModel* Panne::triepn(int index)
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("ID"));
 
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRIX"));
-    model->setHeaderData(3, Qt::Horizontal, QObject::tr("DUREE"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("DATE DEBUT"));
+        model->setHeaderData(4, Qt::Horizontal, QObject::tr("DATE FIN"));
     return model;
 }
 QSqlQueryModel* Panne::triepp(int index)
@@ -122,7 +130,8 @@ QSqlQueryModel* Panne::triepp(int index)
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("ID"));
 
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRIX"));
-    model->setHeaderData(3, Qt::Horizontal, QObject::tr("DUREE"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("DATE DEBUT"));
+        model->setHeaderData(4, Qt::Horizontal, QObject::tr("DATE FIN"));
     return model;
 }
 QSqlQueryModel* Panne::triepd(int index)
@@ -140,7 +149,8 @@ model->setHeaderData(0, Qt::Horizontal, QObject::tr("NUMSERIE"));
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("ID"));
 
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRIX"));
-    model->setHeaderData(3, Qt::Horizontal, QObject::tr("DUREE"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("DATE DEBUT"));
+        model->setHeaderData(4, Qt::Horizontal, QObject::tr("DATE FIN"));
     return model;
 }
 

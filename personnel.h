@@ -14,7 +14,9 @@ public:
     QSqlQueryModel *afficherperso();
     bool ajouterperso();
     bool supprimerperso(int);
-    bool modifierperso();
+    bool modifierperso(int,QString,QString,QString,QString,QString,QString);
+    QSqlQueryModel* chercherperso(QString index);
+    QSqlQueryModel* triepe(int index);
 };
 
 #endif // PERSONNEL_H

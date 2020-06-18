@@ -1,5 +1,5 @@
-#ifndef clients_H
-#define clients_H
+#ifndef CLIENTS_H
+#define CLIENTS_H
 #include <QString>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
@@ -16,10 +16,9 @@ class clients
      bool modifier (int);
       QSqlQueryModel * afficher_tri_ID();
       QSqlQueryModel * recherche(int);
-        QSqlQueryModel* afficher_BY_CIN();
 private:
     QString nom;
     int cin,tel;
 };
 
-#endif // clients_H
+#endif // CLIENTS_H
