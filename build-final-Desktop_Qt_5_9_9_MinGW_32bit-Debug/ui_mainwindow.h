@@ -76406,7 +76406,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(8);
+        stackedWidget->setCurrentIndex(9);
         pb_ajouter_panne_3->setDefault(false);
 
 

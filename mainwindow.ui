@@ -1167,7 +1167,7 @@ QStatusBar
      </rect>
     </property>
     <property name="currentIndex">
-     <number>8</number>
+     <number>9</number>
     </property>
     <widget class="QWidget" name="page_37">
      <widget class="QLabel" name="label_o9">

@@ -1393,7 +1393,6 @@ void MainWindow::on_pb_ajoutern_clicked()
         QMessageBox::about(this,"Wrong values!","Invalid telephone!");
     }
     else {
-
         int CIN= ui->lineEdit_CIN->text().toInt();
         QString nom= ui->lineEdit_nom->text();
         int tel= ui->lineEdit_tel->text().toInt();
@@ -1524,8 +1523,21 @@ void MainWindow::on_pushButtonn_2_clicked()
 
 void MainWindow::on_pb_ajoutern_3_clicked()
 {
-
+    int ID_ANIMAUX= ui->lineEdit_TYPE->text().toInt();
+    if(ui->lineEdit_cmd->text() == "" || ui->lineEdit_TYPE->text() == "" || ui->lineEdit_QUANTITE->text() == "")
     {
+        QMessageBox::about(this,"Empty values!","Please Enter Values to be Add!");
+    }
+    else if(!(ui->lineEdit_TYPE->text().contains('1') || ui->lineEdit_TYPE->text().contains('2') || ui->lineEdit_TYPE->text().contains('3') || ui->lineEdit_TYPE->text().contains('4') || ui->lineEdit_TYPE->text().contains('5') || ui->lineEdit_TYPE->text().contains('6') || ui->lineEdit_TYPE->text().contains('7') || ui->lineEdit_TYPE->text().contains('8') || ui->lineEdit_TYPE->text().contains('9') || ui->lineEdit_TYPE->text().contains('0')))
+    {
+        QMessageBox::about(this,"Wrong values!","Please Enter the correct ID to be added!");
+    }
+    else if(ID_ANIMAUX == 0)
+    {
+        QMessageBox::about(this,"Wrong values!","Please Enter a number to be added!");
+    }
+
+    else {
         int ID_COMMANDE = ui->lineEdit_cmd->text().toInt();
         QString  CIN= ui->comboBox->currentText();
         int ID_ANIMAUX= ui->lineEdit_TYPE->text().toInt();
@@ -1540,13 +1552,10 @@ void MainWindow::on_pb_ajoutern_3_clicked()
                                                  "Click Cancel to exit."), QMessageBox::Cancel);
 
         }
-        else
-            QMessageBox::critical(nullptr, QObject::tr("Ajouter une COMMANDE"),
-                                  QObject::tr("Erreur !.\n"
-                                              "Click Cancel to exit."), QMessageBox::Cancel);
-
 
     }
+
+
 }
 void MainWindow::on_pb_supprimern_3_clicked()
 {
