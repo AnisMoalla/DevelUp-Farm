@@ -1523,6 +1523,7 @@ void MainWindow::on_pushButtonn_2_clicked()
 
 void MainWindow::on_pb_ajoutern_3_clicked()
 {
+
     int ID_ANIMAUX= ui->lineEdit_TYPE->text().toInt();
     if(ui->lineEdit_cmd->text() == "" || ui->lineEdit_TYPE->text() == "" || ui->lineEdit_QUANTITE->text() == "")
     {
