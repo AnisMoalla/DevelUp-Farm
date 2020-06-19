@@ -376,6 +376,45 @@ void MainWindow::on_supprimercommande_clicked()
 
 void MainWindow::on_modifcmdbutton_clicked()
 {
+    QString test="",COMMANDE;
+    int NUMm, PRIX,QUANTITE,PRIX_TOTALE;
+
+    if(ui->txt_num->text()!=test){
+        NUMm=ui->txt_num->text().toInt();
+        COMMANDE= ui->combo_article->currentText();
+        //ARTICLE="hou";
+        PRIX=ui->txt_prix->text().toInt();
+        QUANTITE=ui->txt_quantite->text().toInt();
+        QDate dat= QDate::currentDate();
+        PRIX_TOTALE=PRIX*QUANTITE;
+        commande C(NUMm,ARTICLE,PRIX,QUANTITE,PRIX_TOTALE);
+
+
+           ui->tabcommandes->setModel(C.afficher());
+       QMessageBox msg;
+       if(C.modifier(NUMm))
+       {msg.setText("commande modifier");
+       msg.exec();
+       ui->tabcommandes->setModel(C.afficher());
+          ui->txt_prix->setText("");
+          ui->txt_num->setText("");
+          ui->txte_nom->setText("");
+          ui->txte_email->setText("");
+          ui->txte_image->setText("");
+       }else{
+           msg.setText("failed to edit");
+           msg.exec();  }
+
+
+    }else{
+        QMessageBox::critical(nullptr, QObject::tr("show error"),
+                                     QObject::tr("Erreur !.\n"
+                                                 "you have to choose from the list."), QMessageBox::Cancel);
+    }
+}
+
+void MainWindow::on_modifarticle_clicked()
+{
     QString test="",ARTICLE;
     int NUMm, PRIX,QUANTITE,PRIX_TOTALE;
 
@@ -411,17 +450,12 @@ void MainWindow::on_modifcmdbutton_clicked()
                                      QObject::tr("Erreur !.\n"
                                                  "you have to choose from the list."), QMessageBox::Cancel);
     }
-}
-
-void MainWindow::on_modifarticle_clicked()
-{
-    QString test="",ARTICLE;
-    QString nomm;
+   /* QString test="",NOM;
     int prix;
-    QString image,fournisseur,adresse,telephone,email;
+    QString nomm,image,fournisseur,adresse,telephone,email;
 
-    if(ui->txt_num->text()!=test){
-        nomm=ui->txte_nom->text().toInt();
+    if(ui->txte_nom->text()!=test){
+        //nomm=ui->txte_nom->text().toInt();
         image= ui->txte_image->text();
         prix=ui->txte_prix->text().toInt();
         fournisseur= ui->txte_fournisseur->text();
@@ -437,7 +471,7 @@ void MainWindow::on_modifarticle_clicked()
            ui->tabcommandes->setModel(C.afficher());
        QMessageBox msg;
        if(A.modifier(nomm))
-       {msg.setText("commande modifier");
+       {msg.setText("commande modifiée");
        msg.exec();
        ui->tabcommandes->setModel(C.afficher());
           ui->txt_prix->setText("");
@@ -454,7 +488,7 @@ void MainWindow::on_modifarticle_clicked()
         QMessageBox::critical(nullptr, QObject::tr("show error"),
                                      QObject::tr("Erreur !.\n"
                                                  "you have to choose from the list."), QMessageBox::Cancel);
-    }
+    }*/
 }
 
 
